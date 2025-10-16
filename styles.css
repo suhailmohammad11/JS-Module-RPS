@@ -1,0 +1,390 @@
+@import url('https://fonts.googleapis.com/css2?family=Capriola&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100vh;
+}
+
+body {
+    font-family: "Capriola", sans-serif;
+    background-color: rgb(137, 193, 94);
+    overflow-y: hidden;
+}
+
+.game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+    gap: 100px;
+}
+
+.score-board {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid rgb(246, 238, 238);
+    border-radius: 7px;
+    padding: 20px;
+    width: 50%;
+}
+
+.score-board .title {
+    text-transform: uppercase;
+    width: 100px;
+    color: white;
+}
+
+.scores {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+.computer-score,
+.user-score {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 100px;
+    background-color: #fff;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.computer-score p:nth-child(2),
+.user-score p:nth-child(2) {
+    font-size: 2.5em;
+}
+
+.game-area {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 100px;
+    max-width: 400px;
+    height: 200px;
+}
+
+
+#rock,
+#paper,
+#scissors {
+    height: 100px;
+    width: 100px;
+}
+
+
+.btns {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    padding: 50px;
+    padding-right: 20px;
+}
+
+#rules,
+#next {
+    all: unset;
+    padding: 10px 30px;
+    background-color: transparent;
+    border-radius: 6px;
+    border: 2px solid white;
+    color: white;
+}
+
+#next {
+    display: none;
+}
+
+.rules {
+    position: absolute;
+    width: 290px;
+    height: 330px;
+    background-color: rgb(0, 68, 41);
+    color: white;
+    outline: 8px solid white;
+    border-radius: 10px;
+    padding-left: 30px;
+    padding-top: 20px;
+    top: 270px;
+    right: 70px;
+}
+
+.rules h3 {
+    font-size: 2em;
+    font-weight: lighter;
+    padding-left: 20px;
+    padding-bottom: 5px;
+}
+
+.rules ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 10px;
+}
+
+.rules li {
+    font-size: small;
+}
+
+#close {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    right: -20px;
+    top: -20px;
+    cursor: pointer;
+
+}
+
+.frame-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.choices {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    overflow: visible;
+}
+
+.pc-choice-div,
+.user-choice-div {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow: visible;
+}
+
+.pc-choice-div p,
+.user-choice-div p {
+    color: white;
+}
+
+.message-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 170px;
+    gap: 10px;
+}
+
+.message-div p {
+    text-align: center;
+    font-weight: bold;
+    font-size: larger;
+    color: white;
+
+}
+
+.play-again,
+.replay,
+.play-again-frame-3 {
+    padding: 10px;
+    width: 150px;
+    text-transform: uppercase;
+    border-radius: 5px;
+    border-style: none;
+}
+
+.winner-frame {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: -20px;
+}
+
+.winner-frame h3 {
+    font-size: 3em;
+    color: white;
+    text-align: center;
+}
+
+.winner-frame h5 {
+    font-size: 1em;
+    color: white;
+    text-align: center;
+}
+
+.frame-3 {
+    display: none;
+}
+
+#trophy {
+    width: 400px;
+    height: 250px;
+}
+
+/* winner animation circles */
+.winner-animate {
+    position: relative;
+    display: inline-block;
+    border-radius: 50%;
+    padding: 20px;
+    z-index: 1;
+}
+
+.winner-animate::before,
+.winner-animate::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0.8;
+    animation: ripple 1.8s ease-in-out infinite;
+    z-index: -1;
+}
+
+.winner-animate::before {
+    background: radial-gradient(circle, rgba(33, 227, 68, 0.6), rgba(11, 164, 34, 0.2));
+}
+
+.winner-animate::after {
+    background: radial-gradient(circle, rgba(0, 255, 106, 0.771), rgba(35, 230, 58, 0.15));
+    animation-delay: 0.5s;
+}
+
+@keyframes ripple {
+    0% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.4);
+        opacity: 0.9;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1.8);
+        opacity: 0;
+    }
+}
+
+
+@media (max-width:400px) {
+    .score-board {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .score-board {
+        width: 75%;
+        gap: 7px;
+    }
+
+    .score-board .title {
+        font-size: small;
+        width: 300px;
+    }
+
+    .computer-score,
+    .user-score {
+
+        height: 80px;
+        width: 100px;
+
+    }
+
+    .computer-score p:nth-child(2),
+    .user-score p:nth-child(2) {
+        font-size: 2em;
+    }
+
+    .game {
+        gap: 40px;
+    }
+
+    .rules {
+        width: 290px;
+        height: 330px;
+        top: 150px;
+        right: 40px;
+    }
+
+    #close {
+        width: 40px;
+        height: 40px;
+    }
+
+    .game-area {
+        flex-wrap: nowrap;
+        gap: 20px;
+        max-width: 400px;
+        height: 200px;
+    }
+
+    .btns {
+        gap: 10px;
+        padding: 30px;
+        padding-right: 30px;
+    }
+
+    .choices {
+        justify-content: center;
+
+    }
+
+    .message-div p {
+        text-align: center;
+        font-weight: bold;
+        font-size: large;
+        color: white;
+
+    }
+
+    .message-div {
+        width: 120px;
+    }
+
+    .message-div p {
+        font-size: medium;
+    }
+
+    .play-again,
+    .replay,
+    .play-again-frame-3 {
+        width: 100px;
+    }
+
+    .winner-frame h3 {
+        font-size: 2em;
+    }
+
+    .winner-frame h5 {
+        font-size: 0.75em;
+    }
+
+    #trophy {
+        width: 300px;
+    }
+}

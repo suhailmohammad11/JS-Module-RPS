@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="game">
+      <div class="score-board">
+        <div class="title">
+          <h2>Rock Paper Scissors</h2>
+        </div>
+        <div class="scores">
+          <div class="computer-score">
+            <p>Computer Score</p>
+            <p id="computer-score">0</p>
+          </div>
+          <div class="user-score">
+            <p>Your Score</p>
+            <p id="user-score">0</p>
+          </div>
+        </div>
+      </div>
+      <section class="frame-1">
+        <div class="game-area">
+          <img
+            id="rock"
+            src="assets/rock.png"
+            alt="rock-image"
+            data-framework="rock-icon"
+          />
+
+          <img
+            id="scissors"
+            src="assets/scissors.png"
+            alt="scissors-image"
+            data-framework="scissors-icon"
+          />
+          <img
+            id="paper"
+            src="assets/paper.png"
+            alt="paper-image"
+            data-framework="paper-icon"
+          />
+        </div>
+      </section>
+
+      <section class="frame-3">
+        <div class="winner-frame">
+          <div class="trophy-image">
+            <img id="trophy" src="assets/trophy.png" alt="trophy" />
+          </div>
+          <div class="win-message">
+            <h3>HURRAY!</h3>
+            <h5>YOU WON THE GAME</h5>
+          </div>
+
+          <button class="play-again-frame-3">Play Again</button>
+        </div>
+      </section>
+
+      <div class="btns">
+        <button id="rules">Rules</button>
+        <button id="next">Next</button>
+      </div>
+
+      <div class="rules">
+        <img id="close" src="assets/close.png" />
+        <h3>Game Rules</h3>
+        <ul>
+          <li>
+            Rock beats scissors, scissors beat paper, and paper beats rock.
+          </li>
+          <li>
+            Agree ahead of time whether you’ll count off “rock, paper, scissors,
+            shoot” or just “rock, paper, scissors.”
+          </li>
+          <li>
+            Use rock, paper, scissors to settle minor decisions or simply play
+            to pass the time
+          </li>
+          <li>
+            If both players lay down the same hand, each player lays down
+            another hand
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
