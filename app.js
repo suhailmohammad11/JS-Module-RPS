@@ -1,14 +1,15 @@
 const rules = document.querySelector(".rules");
 const close = document.getElementById("close");
+const cross=document.getElementById("cross");
 const rulesBtn = document.getElementById("rules");
 const nextBtn = document.getElementById("next");
 const frame1 = document.querySelector(".frame-1");
 const scoreBoard = document.querySelector(".score-board");
 
 //images
-const rock = document.querySelector(".game-area>img");
-const scissors = document.querySelector(".game-area img:nth-child(2)");
-const paper = document.querySelector(".game-area img:nth-child(3)");
+const rock = document.getElementById("rock");
+const scissors = document.getElementById("scissors");
+const paper = document.getElementById("paper");
 const game = document.querySelector(".game");
 
 //frame-2 divs
@@ -21,6 +22,8 @@ choiceDiv.classList.add("choices");
 let msgDiv = document.createElement("div");
 msgDiv.classList.add("message-div");
 let msg = document.createElement("p");
+let againstPC=document.createElement("p");
+againstPC.innerHTML="AGAINST PC";
 msg.classList.add("win-message");
 let playAgainBtn = document.createElement("button");
 playAgainBtn.classList.add("play-again");
@@ -38,6 +41,8 @@ let pcChoiceDiv = document.createElement("div");
 pcChoiceDiv.classList.add("pc-choice-div");
 let userChoiceDiv = document.createElement("div");
 userChoiceDiv.classList.add("user-choice-div");
+let playAgainBtn2 = document.querySelector(".play-again-frame-3");
+
 
 //frame 3 - winner card
 let frame3 = document.querySelector(".frame-3");
@@ -45,7 +50,6 @@ let frame3 = document.querySelector(".frame-3");
 let images = [rock, paper, scissors];
 let compSelect = "";
 let userSelect = "";
-rules.style.display = "none";
 
 frame2.style.display = "none";
 frame1.parentNode.insertBefore(frame2, frame1.nextSibling);
@@ -60,10 +64,11 @@ function computerChoice() {
   //creating p tag for "pc picked"
   let specifier = document.createElement("p");
   let clone = compSelect.cloneNode(true);
-  specifier.classList.add("pc-picked"); //p tag class name
-  specifier.innerHTML = "PC Picked"; // creeated p tag
-  pcChoiceDiv.appendChild(specifier); //insert p tag in userChoice div
+  specifier.classList.add("pc-picked"); 
+  specifier.innerHTML = "PC Picked"; 
+  pcChoiceDiv.appendChild(specifier); 
   pcChoiceDiv.appendChild(clone);
+  clone.removeAttribute("id");
   choiceDiv.appendChild(pcChoiceDiv);
 }
 
@@ -87,9 +92,11 @@ function userChoice() {
       specifier.innerHTML = "You Picked";
       userChoiceDiv.appendChild(specifier);
       userChoiceDiv.appendChild(clone);
-      computerChoice();
+      clone.removeAttribute("id");
       choiceDiv.appendChild(userChoiceDiv);
-      choiceDiv.insertBefore(msgDiv, userChoiceDiv);
+      computerChoice();
+      choiceDiv.appendChild(pcChoiceDiv)
+      choiceDiv.insertBefore(msgDiv, pcChoiceDiv);
 
       frame2.appendChild(choiceDiv);
 
@@ -119,24 +126,21 @@ function checkWinner() {
   if (winner === "user") {
     const userImg = userChoiceDiv.querySelector("img");
 
-    // Create wrapper div
     const wrapper = document.createElement("div");
     wrapper.classList.add("winner-animate");
 
-    // Insert wrapper before replacing
     userImg.parentNode.replaceChild(wrapper, userImg);
     wrapper.appendChild(userImg);
     userScore++;
     userScoreEle.innerHTML = userScore;
     saveScores();
 
-    msg.innerHTML = "YOU WIN AGAINST PC";
+    msg.innerHTML = "YOU WIN";
     playAgainBtn.textContent = "Play Again";
     nextBtn.style.display = "block";
     msgDiv.appendChild(msg);
+    msgDiv.appendChild(againstPC);
     msgDiv.appendChild(playAgainBtn);
-    choiceDiv.insertBefore(msgDiv, userChoiceDiv);
-
     playAgainBtn.addEventListener("click", resetGame);
   } else if (winner === "computer") {
     const pcImg = pcChoiceDiv.querySelector("img");
@@ -150,18 +154,21 @@ function checkWinner() {
     pcScoreEle.innerHTML = pcScore;
     saveScores();
 
-    msg.innerHTML = "YOU LOST AGAINST PC";
+    msg.innerHTML = "YOU LOST";
     playAgainBtn.textContent = "Play Again";
+    nextBtn.style.display = "none";
     msgDiv.appendChild(msg);
+    msgDiv.appendChild(againstPC);
     msgDiv.appendChild(playAgainBtn);
-    choiceDiv.insertBefore(msgDiv, userChoiceDiv);
     playAgainBtn.addEventListener("click", resetGame);
   } else {
     msg.innerHTML = "TIE UP";
     replayBtn.textContent = "Replay";
     msgDiv.appendChild(msg);
+    msgDiv.appendChild(againstPC)
+    againstPC.style.visibility="hidden";
+    nextBtn.style.display = "none";
     msgDiv.appendChild(replayBtn);
-    choiceDiv.insertBefore(msgDiv, userChoiceDiv);
     replayBtn.addEventListener("click", resetGame);
   }
 }
@@ -175,15 +182,21 @@ function resetGame() {
   compSelect = "";
   userSelect = "";
   scoreBoard.style.display = "flex";
-  frame1.style.display = "block";
+  frame1.style.display = "flex";
   frame2.style.display = "none";
   frame3.style.display = "none";
+  nextBtn.style.display = "none";
+  againstPC.style.visibility="visible";
 
   document
     .querySelectorAll(".winner-animate")
     .forEach((img) => img.classList.remove("winner-animate"));
 }
+
 //rules button close fuctionality
+cross.addEventListener("click",()=>{
+  rules.style.display="none";
+})
 close.addEventListener("click", () => {
   rules.style.display = "none";
 });
@@ -199,9 +212,9 @@ nextBtn.addEventListener("click", () => {
   frame2.style.display = "none";
   frame3.style.display = "block";
   nextBtn.style.display = "none";
-  const playAgainBtn2 = document.querySelector(".play-again-frame-3");
   playAgainBtn2.addEventListener("click", resetGame);
 });
+
 
 function saveScores() {
   localStorage.setItem("userScore", userScore);

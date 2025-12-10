@@ -1,44 +1,49 @@
 @import url('https://fonts.googleapis.com/css2?family=Capriola&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dangrek&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
-html,
 body {
-    height: 100vh;
-}
-
-body {
-    font-family: "Capriola", sans-serif;
+    font-family: "Roboto", sans-serif;
     background-color: rgb(137, 193, 94);
     overflow-y: hidden;
+    min-height: 100vh;
 }
 
 .game {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    margin-top: 30px;
-    gap: 100px;
+    gap: 70px;
+    width: 100%;
+    padding-top: 60px;
 }
 
 .score-board {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    border: 2px solid rgb(246, 238, 238);
-    border-radius: 7px;
+    border: 2px solid white;
+    border-radius: 13px;
+    width: 800px;
+    height: 158px;
     padding: 20px;
-    width: 50%;
+    box-shadow: 0 8px 17px rgba(0, 0, 0, 0.3);
 }
 
-.score-board .title {
+.score-board .title p {
     text-transform: uppercase;
-    width: 100px;
+    font-size: 40px;
+    letter-spacing: 3px;
+    font-weight: 500;
     color: white;
+    font-family: "Roboto", sans-serif;
+    width: 235px;
+    line-height: calc(100% - 2px);
 }
 
 .scores {
@@ -52,59 +57,116 @@ body {
 .user-score {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
-    width: 100px;
+    height: 128px;
+    width: 139px;
+    text-transform: uppercase;
     background-color: #fff;
-    border-radius: 5px;
+    border-radius: 9px;
     text-align: center;
+    padding: 10px;
+}
+
+.computer-score>p:first-child,
+.user-score>p:first-child {
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: rgb(101, 101, 101)
 }
 
 .computer-score p:nth-child(2),
 .user-score p:nth-child(2) {
-    font-size: 2.5em;
+    font-size: 68px;
+    font-weight: bold;
 }
 
-.game-area {
-    position: relative;
+
+.frame-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:45px;
+}
+
+.two-images {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 100px;
-    max-width: 400px;
-    height: 200px;
+    gap: 70px;  
 }
 
+.two-lines {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.line {
+    position: absolute;
+    width: 250px;
+    height: 13px;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: -10;
+}
+
+#line-2 {
+    position:absolute;
+    transform: rotate(60deg);
+    top:420px;
+    left:580px;
+    width: 200px;
+    height: 13px;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: -4
+}
+
+#line-3 {
+    position:absolute;
+    top:420px;
+    right:580px;
+    transform: rotate(-60deg);
+    width: 200px;
+    height: 13px;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: -3;
+}
 
 #rock,
 #paper,
 #scissors {
-    height: 100px;
-    width: 100px;
+    height: 150px;
+    width: 150px;
 }
 
-
 .btns {
-    margin-top: 20px;
+    position: fixed;
+    bottom:3px;
+    right:14px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     gap: 30px;
     width: 100%;
-    padding: 50px;
+    padding: 20px;
     padding-right: 20px;
 }
 
 #rules,
 #next {
     all: unset;
-    padding: 10px 30px;
     background-color: transparent;
-    border-radius: 6px;
+    border-radius: 10px;
     border: 2px solid white;
     color: white;
+    width: 119px;
+    height: 40px;
+    text-align: center;
+    font-size: 21px;
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 2px;
 }
 
 #next {
@@ -112,62 +174,77 @@ body {
 }
 
 .rules {
-    position: absolute;
-    width: 290px;
-    height: 330px;
+    position: fixed;
+    width: 278px;
+    height: 310px;
     background-color: rgb(0, 68, 41);
     color: white;
     outline: 8px solid white;
     border-radius: 10px;
-    padding-left: 30px;
-    padding-top: 20px;
-    top: 270px;
-    right: 70px;
+    padding: 10px;
+    top: 65%;
+    right: 60px;
+    transform: translateY(-50%);
+    gap: 27px;
+    z-index: 9999;
+    box-shadow: 0 15px 20px rgba(0,0,0,0.6);
 }
 
 .rules h3 {
-    font-size: 2em;
-    font-weight: lighter;
-    padding-left: 20px;
-    padding-bottom: 5px;
+    text-align: center;
+    font-size: 29px;
+    font-weight: 500;
+    padding: 10px 0;
 }
 
 .rules ul {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 10px;
-    margin: 10px;
+    padding-right: 10px;
+    gap: 5px;
+
 }
 
 .rules li {
-    font-size: small;
+    display: flex;
+    align-items: center;    
+    gap:10px;
+    font-size:13px;
+    list-style-type:none;
+    padding: 7px;
+}
+.bullet{
+    flex-shrink: 0;
+    width:10px;
+    height:10px;
+    background-color:yellow;
 }
 
 #close {
     position: absolute;
-    width: 50px;
-    height: 50px;
-    right: -20px;
-    top: -20px;
+    width: 60px;
+    height: 60px;
+    right: -35px;
+    top: -35px;
     cursor: pointer;
 
 }
-
-.frame-2 {
+#close+p{
+    position: absolute;
+    font-family: "Dangrek", sans-serif;
+    right:-16px;
+    top:-40px;
+    font-size: 40px;
+    cursor: pointer;
+}
+.choices {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-}
-
-.choices {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 100%;
     overflow: visible;
+    gap:30px;
 }
 
 .pc-choice-div,
@@ -183,31 +260,54 @@ body {
     color: white;
 }
 
+.user-choice-div img,
+.pc-choice-div img,
+.winner-animate img {
+    width: 200px;
+    height: 200px;
+}
+
+.user-picked, .pc-picked{
+    text-align: center; 
+    text-transform: uppercase;
+    font-size: 17px;
+    letter-spacing: 2px;
+}
+
 .message-div {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 170px;
-    gap: 10px;
+    width: 230px;
+    align-self: self-end ;
+    padding-bottom: 20px;
 }
 
-.message-div p {
-    text-align: center;
+.win-message {
     font-weight: bold;
-    font-size: larger;
+    font-size:calc(2em + 10px);
     color: white;
-
+    letter-spacing: 3px;
 }
-
+.win-message+p{
+    color:white;
+    font-size: 20px;
+    padding-bottom: 14px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
 .play-again,
 .replay,
 .play-again-frame-3 {
-    padding: 10px;
-    width: 150px;
+    padding: 11px;
+    width: 174px;
     text-transform: uppercase;
     border-radius: 5px;
     border-style: none;
+    letter-spacing: 2px;
+    color: #6B6B6B;
+    font-weight: 700;
 }
 
 .winner-frame {
@@ -215,29 +315,46 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 40px;
-    margin-bottom: -20px;
+    gap: 32px;
 }
 
-.winner-frame h3 {
-    font-size: 3em;
+.winner-frame .win-message p:first-child {
+    font-size: 90px;
     color: white;
     text-align: center;
+    letter-spacing: 5px;
 }
 
-.winner-frame h5 {
-    font-size: 1em;
+.winner-frame .win-message p:nth-child(2) {
+    font-size: 40px;
+    font-weight: 500;
     color: white;
     text-align: center;
+    
 }
 
 .frame-3 {
     display: none;
 }
+.trophy-image-container{
+    position: relative;
+    width: 500px;
+    height:300px;
+}
+
+#stars{
+    position: absolute;
+    right:10px;
+    width: 100%;
+    height: auto;
+}
 
 #trophy {
-    width: 400px;
-    height: 250px;
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top:100px;
+    left:140px;
 }
 
 /* winner animation circles */
@@ -245,8 +362,7 @@ body {
     position: relative;
     display: inline-block;
     border-radius: 50%;
-    padding: 20px;
-    z-index: 1;
+    animation: ripple3 2s ease-in-out infinite;
 }
 
 .winner-animate::before,
@@ -258,133 +374,47 @@ body {
     width: 180px;
     height: 180px;
     border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0.8);
-    opacity: 0.8;
-    animation: ripple 1.8s ease-in-out infinite;
+    transform: translate(-50%, -50%);
+    animation: ripple 2s ease-in-out infinite;
     z-index: -1;
+    pointer-events: none;
 }
 
 .winner-animate::before {
-    background: radial-gradient(circle, rgba(33, 227, 68, 0.6), rgba(11, 164, 34, 0.2));
+    background: radial-gradient(circle, rgb(40, 154, 39), rgba(40, 154, 39, 0.4));
 }
 
 .winner-animate::after {
-    background: radial-gradient(circle, rgba(0, 255, 106, 0.771), rgba(35, 230, 58, 0.15));
+    background: radial-gradient(circle, rgb(40, 154, 39), rgba(40, 154, 39, 0.15));
     animation-delay: 0.5s;
 }
 
 @keyframes ripple {
     0% {
-        transform: translate(-50%, -50%) scale(0.8);
-        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
     }
-
-    50% {
-        transform: translate(-50%, -50%) scale(1.4);
+    30% {
+        transform: translate(-50%, -50%) scale(1.25);
         opacity: 0.9;
     }
-
+    75% {
+        transform: translate(-50%, -50%) scale(1.4);
+        opacity: 0.75;
+    }
     100% {
         transform: translate(-50%, -50%) scale(1.8);
-        opacity: 0;
+        opacity: 0.5;
     }
 }
-
-
-@media (max-width:400px) {
-    .score-board {
-        flex-wrap: wrap;
-        justify-content: center;
+@keyframes ripple3 {
+    0% {
+        box-shadow: 0 0 0 0 rgba(40, 154, 39, 0.3);
     }
-
-    .score-board {
-        width: 75%;
-        gap: 7px;
+    50% {
+        box-shadow: 0 0 0 40px rgba(40, 154, 39, 0.15);
     }
-
-    .score-board .title {
-        font-size: small;
-        width: 300px;
-    }
-
-    .computer-score,
-    .user-score {
-
-        height: 80px;
-        width: 100px;
-
-    }
-
-    .computer-score p:nth-child(2),
-    .user-score p:nth-child(2) {
-        font-size: 2em;
-    }
-
-    .game {
-        gap: 40px;
-    }
-
-    .rules {
-        width: 290px;
-        height: 330px;
-        top: 150px;
-        right: 40px;
-    }
-
-    #close {
-        width: 40px;
-        height: 40px;
-    }
-
-    .game-area {
-        flex-wrap: nowrap;
-        gap: 20px;
-        max-width: 400px;
-        height: 200px;
-    }
-
-    .btns {
-        gap: 10px;
-        padding: 30px;
-        padding-right: 30px;
-    }
-
-    .choices {
-        justify-content: center;
-
-    }
-
-    .message-div p {
-        text-align: center;
-        font-weight: bold;
-        font-size: large;
-        color: white;
-
-    }
-
-    .message-div {
-        width: 120px;
-    }
-
-    .message-div p {
-        font-size: medium;
-    }
-
-    .play-again,
-    .replay,
-    .play-again-frame-3 {
-        width: 100px;
-    }
-
-    .winner-frame h3 {
-        font-size: 2em;
-    }
-
-    .winner-frame h5 {
-        font-size: 0.75em;
-    }
-
-    #trophy {
-        width: 300px;
+    100% {
+        box-shadow: 0 0 0 80px rgba(40, 154, 39, 0.05);
     }
 }
